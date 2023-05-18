@@ -7,3 +7,7 @@ class Vitals(models.Model):
     temp = models.IntegerField(null=True)
     spo2 = models.IntegerField(null=True)
     timestamp = models.CharField(default='nan', max_length=30)
+
+class esp(models.Model):
+    userID = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    espID = models.CharField(max_length=100) 

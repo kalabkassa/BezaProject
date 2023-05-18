@@ -2,14 +2,17 @@
 #include <WiFi.h>
 #include <WebSocketClient.h>
 
+#include "time.h"
+#include "sntp.h"
+
 #define REV(x) ( ((x&0xff000000)>>24) | (((x&0x00ff0000)<<8)>>16) | (((x&0x0000ff00)>>8)<<16) | ((x&0x000000ff) << 24) )
 
 typedef std::function<void(BLERemoteCharacteristic* pBLERemoteCharacteristic, uint8_t* pData, size_t length, bool isNotify)> notify_callback;
 
-const char* ssid     = "mi";
-const char* password = "pipipipi";
+const char* ssid     = "wifi";
+const char* password = "12345678";
 char path[] = "/update/temp/";
-char host[] = "192.168.43.189";
+char host[] = "192.168.137.196";
 uint16_t port = 8000;
 
 WebSocketClient webSocketClient;
@@ -34,6 +37,32 @@ static BLEAdvertisedDevice* heartrateDevice;
 
 std::string tempData;
 std::string heartrateData;
+
+const char* ntpServer1 = "pool.ntp.org";
+const char* ntpServer2 = "time.nist.gov";
+const long  gmtOffset_sec = 3600;
+const int   daylightOffset_sec = 3600;
+
+const char* time_zone = "CET-1CEST,M3.5.0,M10.5.0/3";  // TimeZone rule for Europe/Rome including daylight adjustment rules (optional)
+
+std::string LocalTime()
+{
+  struct tm timeinfo;
+  if(!getLocalTime(&timeinfo)){
+    Serial.println("No time available (yet)");
+    return "NAN";
+  }
+  char timestamp[21];
+  strftime(timestamp, 21,"%B %d %Y %H:%M:%S", &timeinfo);
+  return timestamp;
+}
+
+// Callback function (get's called when time adjusts via NTP)
+void timeavailable(struct timeval *t)
+{
+  Serial.println("Got time adjustment from NTP!");
+  LocalTime();
+}
 
 void serverUpdate(const char* data){
   if (client.connected())
@@ -77,7 +106,7 @@ static void heartrateNotifyCallback(
   BLERemoteCharacteristic* pBLERemoteCharacteristic, uint8_t* pData, size_t length, bool isNotify) {
     Serial.println(pData[1]);
     heartrateData = std::to_string(pData[1]);
-    std::string data = heartrateData + "," + tempData;
+    std::string data = heartrateData + "," + tempData + "," + LocalTime();
     serverUpdate(data.c_str());
 }
 
@@ -130,7 +159,7 @@ bool connectToServer(BLEAdvertisedDevice* device, BLEUUID serviceUUID, BLEUUID c
     if(pRemoteCharacteristic->canRead()) {
       std::string value = pRemoteCharacteristic->readValue();
       Serial.print("The characteristic value was: ");
-      Serial.println(value.c_str());
+      // Serial.println(value.c_str());
     }
 
     if(pRemoteCharacteristic->canNotify())
@@ -196,6 +225,25 @@ void websocket_setup(){
 
 void setup() {
   Serial.begin(115200);
+   sntp_set_time_sync_notification_cb( timeavailable );
+
+  /**
+   * NTP server address could be aquired via DHCP,
+   *
+   * NOTE: This call should be made BEFORE esp32 aquires IP address via DHCP,
+   * otherwise SNTP option 42 would be rejected by default.
+   * NOTE: configTime() function call if made AFTER DHCP-client run
+   * will OVERRIDE aquired NTP server address
+   */
+  sntp_servermode_dhcp(1);    // (optional)
+
+  /**
+   * This will set configured ntp servers and constant TimeZone/daylightOffset
+   * should be OK if your time zone does not need to adjust daylightOffset twice a year,
+   * in such a case time adjustment won't be handled automagicaly.
+   */
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer1, ntpServer2);
+
   Serial.println("Starting Arduino BLE Client application...");
   BLEDevice::init("");
 
@@ -227,6 +275,9 @@ void loop() {
     //   Serial.println("We have failed to connect to the server; there is nothin more we will do.");
     // }
     // doConnect = false;
+
+  LocalTime();     // it will take some time to sync time :)
+
   BLEDevice::getScan()->stop();
   if(connectToServer(tempDevice, tempServiceUUID, tempCharUUID, tempNotifyCallback))
     connected = true;
