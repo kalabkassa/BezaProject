@@ -63,6 +63,6 @@ class tempConsumer(WebsocketConsumer):
             'temp': round(float(data[1]), 4),
             'time': data[2],
         }))
-        # query = Vitals.objects.create(heartRate=data[0], temp= round(float(data[1]), 4),timestamp=data[2])
-        # query.save()
+        query = Vitals.objects.create(heartRate=data[0], temp= round(float(data[1]), 4),timestamp=data[2])
+        query.save()
 
