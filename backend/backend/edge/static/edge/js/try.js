@@ -1,5 +1,6 @@
 const socket = new WebSocket('ws://' + window.location.host + '/update/temp/');
 
+ 
 var hb = [];
 hb.push(document.getElementById('11'))
 hb.push(document.getElementById('12'))

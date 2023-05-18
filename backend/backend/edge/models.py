@@ -6,4 +6,4 @@ class Vitals(models.Model):
     heartRate = models.IntegerField(null=True)
     temp = models.IntegerField(null=True)
     spo2 = models.IntegerField(null=True)
-    timestamp = models.CharField(default='nan')
+    timestamp = models.CharField(default='nan', max_length=30)
