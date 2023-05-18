@@ -1,5 +1,5 @@
 import json
-from models import Vitals
+from .models import Vitals
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
  
