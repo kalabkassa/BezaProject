@@ -11,7 +11,108 @@
     {% endblock scripts %}
   </head>
   <body>
-    <h2 id = "spo2"></h2>
-    <h2 id = "hb"></h2>
+    {% comment %} <div style= "width: 60%;
+                height:40vh;
+                background-color:white;
+                border-radius:3%;
+                box-shadow:red 1px 1px 1px 0px inset, red -3px 3px 6px 1px inset;
+                padding:3%;
+                margin:3%;">
+    <dev id = "temp"></dev>
+    <dev id = "hb"></dev>
+  </div> {% endcomment %}
+  <div style="width: 45%; 
+                display: inline-block;
+              height: 35vh; 
+              background-color: white;
+              margin: 1%;
+              
+              border-radius: 10px;
+              border-color: blue;
+              border-width: 5%, 5%, 5%, 5%;
+              box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;">
+     <div style="width:11%;
+     height:9vh;
+     position: absolute;
+     top: 5vh;
+     left: 35%;
+     box-shadow: rgb(255, 0, 0,0.4) -1px 1px 1px 1px ,rgba(0, 0, 0, 0.4) -6px 6px;
+     border-radius: 5px;">
+    <div class="heart">&#x2665</div> 
+    <span class="termo" style="position:absolute;top:-0.5vh;left:35%">&#x1f321</span>
+     
+    <h2 id = "avgHB" style="position: absolute; top: -1.8vh;left: 25%;font-size: 250%;"></h2>
+    <h2 id = "avgTemp" style="position: absolute; top: -2vh;left: 70%;font-size: 250%;"></h2> 
+    </div>
+     <div>
+       <h6 style="text-align:left;font-size: large;position:absolute;; margin: 5px; padding: 50px;" >TIME</h6>
+       <h6 style="text-align: center;font-size: large;position: absolute;left: 11%;margin: 5px; padding: 50px;">TEMPRATURE(&deg C)</h6>
+       <h6 style="text-align: center;font-size: large;position: absolute;left: 19.5%;margin: 5px; padding: 50px;">HEART RATE(BPM)</h6>
+       
+     </div>
+     <div style="height: 4vh;
+                  margin-top: 15%;
+                  width: 85%;
+                  border-radius: 10px;
+                  box-shadow: red 0px -1px 2px -1px;">
+      <h3 id='31' style="text-align: left;display: inline-block; margin-right: 355px;margin-left: 30px;"></h3>
+      <h3 id='01' style="position:absolute;  margin-right: 255px;margin-left: 260px; top:14vh;"></h3>
+      <h3 id='11' style="text-align: center;display: inline-block;"></h3>
+    </div>
+    <div style="height: 4vh;
+    width: 85%;
+    border-radius: 10px;
+    box-shadow: red 0px -1px 2px -1px;">
+ <h3 id='32' style="text-align: left;display: inline-block; margin-right: 355px;margin-left: 30px;"></h3>
+ <h3  id='02'style="; margin-right: 255px;margin-left: 260px;position:absolute;top:18vh;"></h3>
+<h3  id='12' style="text-align: center; display: inline-block;"></h3>
+</div>
+<div style="height: 4vh;
+width: 85%;
+border-radius: 10px;
+ box-shadow: red 0px -1px 2px -1px;">
+ <h3 id='33' style="text-align: left;display: inline-block; margin-right: 355px;margin-left: 30px;"></h3>
+ <h3 id='03' style="position:absolute;top:22vh; margin-right: 255px;margin-left: 260px;"></h3>
+<h3 id='13' style="text-align: center; display: inline-block;"></h3>
+</div>
+<div style="height: 4vh;
+width: 85%;
+border-radius: 10px;
+ box-shadow: red 0px -1px 2px -1px;">
+ <h3 id='34' style="text-align: left;display: inline-block; margin-right: 355px;margin-left: 30px;"></h3>
+ <h3  id='04'style="position:absolute; top:26vh; margin-right: 255px;margin-left: 260px;"></h3>
+<h3 id='14' style="text-align: center; display: inline-block;"></h3>
+</div>
+<div style="height: 4vh;
+width: 85%;
+border-radius: 10px;
+ box-shadow: red 0px -1px 2px -1px;">
+ <h3 id='35' style="text-align: left;display: inline-block; margin-right: 255px;margin-left: 30px;"></h3>
+ <h3  id='05'style="position:absolute; top:30vh; margin-right: 255px;margin-left: 260px;"></h3>
+ 
+<h3 id='15' style="text-align: center; display: inline-block;">_</h3>
+</div>
+</div>
+
+  </body>
+  <style>
+    .heart{
+      color: #e00;
+      animation: beat .25s infinite alternate;
+      transform-origin: center;
+      font-size: 60px;
+      margin: 3%;
+      
+    }
+    @keyframes beat {
+      to {transform: scale(1,1.25);}
+    }
+    .termo{
+      color: #e00;
+      font-size: 60px;
+      margin: 3%;
+    
+    
+  </style>
   </body>
 </html>

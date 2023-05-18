@@ -58,6 +58,7 @@ class tempConsumer(WebsocketConsumer):
         data = event['data'].split(',')
         print(data)
         self.send(text_data=json.dumps({
-            'heart_rate':data[0],
+            'heart_rate':int(data[0]),
             'temp': round(float(data[1]), 4),
+            'time': data[2],
         }))
