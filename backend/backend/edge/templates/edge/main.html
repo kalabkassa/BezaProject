@@ -90,7 +90,7 @@ border-radius: 10px;
 <script>
   
    
-const xValues = [100,200,300,400,500,600,700,800,900,1000];
+const xValues = {{time}};
 
 
 new Chart("myChart", {
@@ -98,11 +98,11 @@ new Chart("myChart", {
   data: {
     labels: xValues,
     datasets: [{ 
-      data: [86,11,10,10,10,11,13,2,78,24],
+      data: {{heartRate}},
       borderColor: "red",
       fill: false
     }, { 
-      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      data: {{temp}},
       borderColor: "blue",
       fill: false
     }]
