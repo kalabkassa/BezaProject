@@ -95,10 +95,11 @@ border-radius: 10px;
 </div>
 </div>
 
-
+<div id="div2" style="display: none;">
+  <canvas id="myChart" style="width:100%;max-width:600px;position: absolute;top: 3vh;left: 50%; margin-top: 30px;margin-left: 30px;box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;"></canvas>
 <script>
-  if (pull==2){
-    <canvas id="myChart" style="width:100%;max-width:600px;display: inline-block; margin-top: 30px;margin-left: 30px;box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;"></canvas>
+  
+   
 const xValues = [100,200,300,400,500,600,700,800,900,1000];
 
 new Chart("myChart", {
@@ -122,17 +123,29 @@ new Chart("myChart", {
   options: {
     legend: {display: false}
   }
-});}
-</script>
-<button id="pull" class="buttonclass" style="width: 8%;height: 8vh;border-radius: 10px;background-color: white; border-color: #e00;">PULL</button>
-<script>
-  var btn = document.getElementById("buttonId");
-  
-  btn.addEventListener("click", function(){
-
-      pull = 2;
-  });
-</script>
+});
+</script></div>
+<div>
+<button id="btn" style="width: 8%;height: 8vh;border-radius: 10px;background-color: white; border-color: #e00;display: inline-block;">PULL</button>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("button").click(function(){
+          $("#div2").toggle();
+          var x = document.getElementById("btn");
+          if (x.innerHTML == "pull"){
+          x.innerHTML =="push";
+          }
+          else {
+            x.innerHTML == "pull";
+          }
+          
+         
+          
+        });
+      });
+    </script>
   </body>
   <style>
     .heart{
