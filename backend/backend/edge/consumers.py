@@ -1,4 +1,5 @@
 import json
+from models import Vitals
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
  
@@ -62,3 +63,6 @@ class tempConsumer(WebsocketConsumer):
             'temp': round(float(data[1]), 4),
             'time': data[2],
         }))
+        # query = Vitals.objects.create(heartRate=data[0], temp= round(float(data[1]), 4),timestamp=data[2])
+        # query.save()
+
