@@ -51,3 +51,11 @@ socket.onmessage = function (e) {
 
 socket.onopen = function (e) {
 };
+function myFunction() {
+    var x = document.getElementById("btn");
+    if (x.innerHTML === "PULL") {
+      x.innerHTML = "HIDE";
+    } else {
+      x.innerHTML = "PULL";
+    }
+  }

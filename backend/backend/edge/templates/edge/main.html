@@ -40,7 +40,7 @@
      box-shadow: rgb(255, 0, 0,0.4) -1px 1px 1px 1px ,rgba(0, 0, 0, 0.4) -6px 6px;
      border-radius: 5px;">
     <div class="heart">&#x2665</div> 
-    <span class="termo" style="position:absolute;top:-0.5vh;left:35%">&#x1f321</span>
+    <span class="termo" style="position:absolute;top:-0.5vh;left:40%">&#x1f321</span>
      
     <h2 id = "avgHB" style="position: absolute; top: -1.8vh;left: 25%;font-size: 250%;"></h2>
     <h2 id = "avgTemp" style="position: absolute; top: -2vh;left: 70%;font-size: 250%;"></h2> 
@@ -88,7 +88,7 @@ border-radius: 10px;
 width: 85%;
 border-radius: 10px;
  box-shadow: red 0px -1px 2px -1px;">
- <h3 id='35' style="text-align: left;display: inline-block; margin-right: 255px;margin-left: 30px;"></h3>
+ <h3 id='35' style="text-align: left;display: inline-block; margin-right: 355px;margin-left: 30px;"></h3>
  <h3  id='05'style="position:absolute; top:30vh; margin-right: 255px;margin-left: 260px;"></h3>
  
 <h3 id='15' style="text-align: center; display: inline-block;">_</h3>
@@ -96,26 +96,23 @@ border-radius: 10px;
 </div>
 
 <div id="div2" style="display: none;">
-  <canvas id="myChart" style="width:100%;max-width:600px;position: absolute;top: 3vh;left: 50%; margin-top: 30px;margin-left: 30px;box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;"></canvas>
+  <canvas id="myChart" style="background-color: white; width:100%;max-width:800px;height: 10vh; position: absolute;top: 3vh;left: 50%; margin-top: 30px;margin-left: 30px;box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;"></canvas>
 <script>
   
    
 const xValues = [100,200,300,400,500,600,700,800,900,1000];
+
 
 new Chart("myChart", {
   type: "line",
   data: {
     labels: xValues,
     datasets: [{ 
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      data: [86,11,10,10,10,11,13,2,78,24],
       borderColor: "red",
       fill: false
     }, { 
-      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-      borderColor: "green",
-      fill: false
-    }, { 
-      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      data: [30,70,20,50,60,40,20,10,20,10],
       borderColor: "blue",
       fill: false
     }]
@@ -126,23 +123,13 @@ new Chart("myChart", {
 });
 </script></div>
 <div>
-<button id="btn" style="width: 8%;height: 8vh;border-radius: 10px;background-color: white; border-color: #e00;display: inline-block;">PULL</button>
+<button id="btn" onclick="myFunction()" style="margin: 10px; width: 8%;height: 8vh;border-radius: 10px;background-color: white; display:inline-block;  box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;">PULL</button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       $(document).ready(function(){
         $("button").click(function(){
           $("#div2").toggle();
-          var x = document.getElementById("btn");
-          if (x.innerHTML == "pull"){
-          x.innerHTML =="push";
-          }
-          else {
-            x.innerHTML == "pull";
-          }
-          
-         
-          
         });
       });
     </script>
