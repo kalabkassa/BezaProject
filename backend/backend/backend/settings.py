@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'testdb',
         'USER': 'postgres',
         'PASSWORD': 'temp',
-        'HOST': '192.168.137.196',
+        'HOST': '127.0,0,1',
         'PORT': '5432',
     }
 }
@@ -136,6 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/js/'
+STATIC_URL = 'static/css/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
