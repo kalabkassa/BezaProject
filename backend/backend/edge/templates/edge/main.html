@@ -9,9 +9,12 @@
     {% block scripts %}
     {% load static %}
 	  <script src="{% static 'edge/js/try.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'edge/css/mystyle.css' %}">
     {% endblock scripts %}
+   
   </head>
   <body>
+<<<<<<< HEAD
   <div style="width: 45%; 
                 display: inline-block;
               height: 35vh; 
@@ -38,49 +41,53 @@
        <h6 style="text-align:left;font-size: large;position:absolute;; margin: 5px; padding: 50px;" >TIME</h6>
        <h6 style="text-align: center;font-size: large;position: absolute;left: 11%;margin: 5px; padding: 50px;">TEMPRATURE(&deg C)</h6>
        <h6 style="text-align: center;font-size: large;position: absolute;left: 21.5%;margin: 5px; padding: 50px;">HEART RATE(BPM)</h6>
+
+    
+  <div class="Table01" >
+    <div class="titlebar">
+    
+     <div class="Title">
+       <h6>TIME</h6>
+       <h6>TEMPRATURE(&deg C)</h6>
+       <h6>HEART RATE(BPM)</h6>
        
      </div>
-     <div style="height: 4vh;
-                  margin-top: 15%;
-                  width: 85%;
-                  border-radius: 10px;
-                  box-shadow: red 0px -1px 2px -1px;">
-      <h3 id='31' style="text-align: left;display: inline-block; margin-right: 300px;margin-left: 30px;"></h3>
-      <h3 id='01' style="position:absolute;  margin-right: 200px;margin-left: 290px; top:15.5vh;"></h3>
-      <h3 id='11' style="text-align: center;display: inline-block;margin-right: 50px;"></h3>
+     <div class="avg" >
+      <div class="heart">&#x2665</div> 
+      <span class="termo" >&#x1f321</span>
+       
+      <h2 id = "avgHB" ></h2>
+      <h2 id = "avgTemp" ></h2> 
+      </div>
     </div>
-    <div style="height: 4vh;
-    width: 85%;
-    border-radius: 10px;
-    box-shadow: red 0px -1px 2px -1px;">
- <h3 id='32' style="text-align: left;display: inline-block; margin-right: 300px;margin-left: 30px;"></h3>
- <h3  id='02'style="; margin-right: 255px;margin-left: 290px;position:absolute;top:19.5vh;"></h3>
-<h3  id='12' style="text-align: center; display: inline-block;"></h3>
+     <div class="info">
+     <div class="row01">
+      <h3 id='31'>sadfafaadfafa</h3>
+      <h3 id='01'>sdaff</h3>
+      <h3 id='11'>sadfaa</h3>
+    </div>
+
+    <div class="row02">
+ <h3 id='32'></h3>
+ <h3  id='02' ></h3>
+<h3  id='12' ></h3>
 </div>
-<div style="height: 4vh;
-width: 85%;
-border-radius: 10px;
- box-shadow: red 0px -1px 2px -1px;">
- <h3 id='33' style="text-align: left;display: inline-block; margin-right: 300px;margin-left: 30px;"></h3>
- <h3 id='03' style="position:absolute;top:23.5vh; margin-right: 255px;margin-left: 290px;"></h3>
-<h3 id='13' style="text-align: center; display: inline-block;"></h3>
+<div class="row03">
+ <h3 id='33'></h3>
+ <h3 id='03'></h3>
+<h3 id='13'></h3>
 </div>
-<div style="height: 4vh;
-width: 85%;
-border-radius: 10px;
- box-shadow: red 0px -1px 2px -1px;">
- <h3 id='34' style="text-align: left;display: inline-block; margin-right: 300px;margin-left: 30px;"></h3>
- <h3  id='04'style="position:absolute; top:27.5vh; margin-right: 255px;margin-left: 290px;"></h3>
-<h3 id='14' style="text-align: center; display: inline-block;"></h3>
+<div class="row04">
+ <h3 id='34'>sfADFDAGAGDA</h3>
+ <h3  id='04' >sfsfa</h3>
+<h3 id='14'></h3>
 </div>
-<div style="height: 4vh;
-width: 85%;
-border-radius: 10px;
- box-shadow: red 0px -1px 2px -1px;">
- <h3 id='35' style="text-align: left;display: inline-block; margin-right: 300px;margin-left: 30px;"></h3>
- <h3  id='05'style="position:absolute; top:31.5vh; margin-right: 255px;margin-left: 290px;"></h3>
+<div class="row05" >
+ <h3 id='35'></h3>
+ <h3  id='05' ></h3>
  
-<h3 id='15' style="text-align: center; display: inline-block; "></h3>
+<h3 id='15'></h3>
+</div>
 </div>
 </div>
 
@@ -89,7 +96,7 @@ border-radius: 10px;
 <script>
   
    
-const xValues = {{time}};
+atomic values in dbms
 
 
 new Chart("myChart", {
@@ -112,7 +119,7 @@ new Chart("myChart", {
 });
 </script></div>
 <div>
-<button id="btn" onclick="myFunction()" style="margin: 10px; width: 8%;height: 8vh;border-radius: 10px;background-color: white; display:inline-block;  box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;">PULL</button>
+<button id="btn" onclick="myFunction()" style="margin: 10px; width: 8%;height: 8vh;border-radius: 10px;background-color: white; display:inline-block;  box-shadow:rgb(0, 0, 0, 0.4) -1px 1px 1px 1px, rgba(0, 0, 0, 0.3) -5px 5px, rgba(0, 0, 0, 0.2) -10px 10px, rgba(0, 0, 0, 0.1) -15px 15px, rgba(0, 0, 0, 0.05) -20px 20px;">PULL</button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -123,24 +130,6 @@ new Chart("myChart", {
       });
     </script>
   </body>
-  <style>
-    .heart{
-      color: #e00;
-      animation: beat .25s infinite alternate;
-      transform-origin: center;
-      font-size: 60px;
-      margin: 3%;
-      
-    }
-    @keyframes beat {
-      to {transform: scale(1,1.25);}
-    }
-    .termo{
-      color: #e00;
-      font-size: 60px;
-      margin: 3%;
-    
-    }
-  </style>
-  </body>
+
+  
 </html>
