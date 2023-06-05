@@ -9,10 +9,10 @@
 
 typedef std::function<void(BLERemoteCharacteristic* pBLERemoteCharacteristic, uint8_t* pData, size_t length, bool isNotify)> notify_callback;
 
-const char* ssid     = "wifi";
-const char* password = "12345678";
+const char* ssid     = "mi";
+const char* password = "pipipipi";
 char path[] = "/update/temp/";
-char host[] = "192.168.137.196";
+char host[] = "192.168.43.189";
 uint16_t port = 8000;
 
 WebSocketClient webSocketClient;
@@ -258,8 +258,7 @@ void setup() {
   pTempBLEScan->start(5, false);
 
 
-  wifi_setup();
-  websocket_setup();
+  j
 } // End of setup.
 
 
