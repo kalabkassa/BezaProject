@@ -1,1 +1,1 @@
-# BezaProject yes 
+# BezaProject
