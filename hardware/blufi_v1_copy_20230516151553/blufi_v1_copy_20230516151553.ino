@@ -9,10 +9,10 @@
 
 typedef std::function<void(BLERemoteCharacteristic* pBLERemoteCharacteristic, uint8_t* pData, size_t length, bool isNotify)> notify_callback;
 
-const char* ssid     = "mi";
-const char* password = "pipipipi";
+const char* ssid     = "KASA";
+const char* password = "ks3510bn";
 char path[] = "/update/temp/";
-char host[] = "192.168.43.189";
+char host[] = "192.168.1.8";
 uint16_t port = 8000;
 
 WebSocketClient webSocketClient;
@@ -104,7 +104,8 @@ static void tempNotifyCallback(
 }
 static void heartrateNotifyCallback(
   BLERemoteCharacteristic* pBLERemoteCharacteristic, uint8_t* pData, size_t length, bool isNotify) {
-    Serial.println(pData[1]);
+    // for (int i = 0; i < length; i++)
+    // Serial.println(pData[1]);
     heartrateData = std::to_string(pData[1]);
     std::string data = heartrateData + "," + tempData + "," + LocalTime();
     serverUpdate(data.c_str());
@@ -225,7 +226,9 @@ void websocket_setup(){
 
 void setup() {
   Serial.begin(115200);
-   sntp_set_time_sync_notification_cb( timeavailable );
+  wifi_setup();
+  websocket_setup();
+  sntp_set_time_sync_notification_cb( timeavailable );
 
   /**
    * NTP server address could be aquired via DHCP,
@@ -256,9 +259,6 @@ void setup() {
   pTempBLEScan->setWindow(449);
   pTempBLEScan->setActiveScan(true);
   pTempBLEScan->start(5, false);
-
-
-  j
 } // End of setup.
 
 

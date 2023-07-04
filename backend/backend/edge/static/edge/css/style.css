@@ -108,7 +108,6 @@ input[type="radio"]{
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 .form-inner form .field{
-  height: 50px;
   width: 100%;
   margin-top: 20px;
 }
@@ -117,6 +116,7 @@ input[type="radio"]{
   width: 100%;
   outline: none;
   padding-left: 15px;
+  padding: 10px;
   border-radius: 15px;
   border: 1px solid lightgrey;
   border-bottom-width: 2px;
@@ -183,4 +183,26 @@ form .btn input[type="submit"]{
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.form-inner form .field input.error-field {
+  border-color: red;
+}
+
+.form-inner form .field input::placeholder {
+  color: #999;
+  transition: all 0.3s ease;
+}
+
+.form-inner form .field input.error-field::placeholder {
+  color: red;
+}
+
+.form-inner form .errorlist {
+  color: red;
+  margin-top: 5px;
+}
+
+.form-inner form .errorlist li {
+  list-style-type:none;
 }

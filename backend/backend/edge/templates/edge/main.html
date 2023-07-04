@@ -1,135 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HTML 5 Boilerplate</title>
-    {% block scripts %}
-    {% load static %}
-	  <script src="{% static 'edge/js/try.js' %}" defer></script>
-    <link rel="stylesheet" href="{% static 'edge/css/mystyle.css' %}">
-    {% endblock scripts %}
-   
-  </head>
-  <body>
-<<<<<<< HEAD
-  <div style="width: 45%; 
-                display: inline-block;
-              height: 35vh; 
-              background-color: white;
-              margin: 1%;
-              border-radius: 10px;
-              border-color: blue;
-              border-width: 5%, 5%, 5%, 5%;
-              box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;">
-     <div style="width:11%;
-     height:9vh;
-     position: absolute;
-     top: 5vh;
-     left: 35%;
-     box-shadow: rgb(255, 0, 0,0.4) -1px 1px 1px 1px ,rgba(0, 0, 0, 0.4) -6px 6px;
-     border-radius: 5px;">
-    <div class="heart">&#x2665</div> 
-    <span class="termo" style="position:absolute;top:-0.5vh;left:40%">&#x1f321</span>
-     
-    <h2 id = "avgHB" style="position: absolute; top: -1.8vh;left: 25%;font-size: 250%;"></h2>
-    <h2 id = "avgTemp" style="position: absolute; top: -2vh;left: 70%;font-size: 250%;"></h2> 
-    </div>
-     <div>
-       <h6 style="text-align:left;font-size: large;position:absolute;; margin: 5px; padding: 50px;" >TIME</h6>
-       <h6 style="text-align: center;font-size: large;position: absolute;left: 11%;margin: 5px; padding: 50px;">TEMPRATURE(&deg C)</h6>
-       <h6 style="text-align: center;font-size: large;position: absolute;left: 21.5%;margin: 5px; padding: 50px;">HEART RATE(BPM)</h6>
+<html>
+<head>
+  <style>
+    .dropdown {
+      position: relative;
+      display: block;
+    }
 
-    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 1920px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-button {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .dropdown-button span {
+      margin-right: 5px;
+    }
+
+    .dropdown-button::after {
+      content: "\25BE";
+      margin-left: 5px;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  {% block scripts %}
+  {% load static %}
+  <script src="{% static 'edge/js/try.js' %}" defer></script>
+  <link rel="stylesheet" href="{% static 'edge/css/mystyle.css' %}">
+  {% endblock scripts %}
+</head>
+<body>
+{% for patient in patients%}
+<div class="dropdown">
+  <button class="dropdown-button">
+    <span>{{patient.user.first_name}}</span>
+  </button>
+  <div class="dropdown-content" id="dropdownContent">
+       
   <div class="Table01" >
     <div class="titlebar">
-    
-     <div class="Title">
-       <h6>TIME</h6>
-       <h6>TEMPRATURE(&deg C)</h6>
-       <h6>HEART RATE(BPM)</h6>
-       
-     </div>
-     <div class="avg" >
-      <div class="heart">&#x2665</div> 
+      <div class="Title">
+        <h6>TIME</h6>
+        <h6>TEMPRATURE(&deg C)</h6>
+        <h6>HEART RATE(BPM)</h6>
+      </div>
+    <div class="avg" >
+    <div class="heart">&#x2665</div> 
       <span class="termo" >&#x1f321</span>
-       
+        
       <h2 id = "avgHB" ></h2>
       <h2 id = "avgTemp" ></h2> 
-      </div>
     </div>
-     <div class="info">
-     <div class="row01">
-      <h3 id='31'>sadfafaadfafa</h3>
-      <h3 id='01'>sdaff</h3>
-      <h3 id='11'>sadfaa</h3>
     </div>
-
+  <div class="info">
+    <div class="row01">
+    <h3 id='31'></h3>
+    <h3 id='01'></h3>
+    <h3 id='11'></h3>
+    </div>
     <div class="row02">
- <h3 id='32'></h3>
- <h3  id='02' ></h3>
-<h3  id='12' ></h3>
+      <h3 id='32'></h3>
+      <h3  id='02' ></h3>
+      <h3  id='12' ></h3>
+    </div>
+    <div class="row03">
+      <h3 id='33'></h3>
+      <h3 id='03'></h3>
+      <h3 id='13'></h3>
+    </div>
+    <div class="row04">
+      <h3 id='34'></h3>
+      <h3  id='04' ></h3>
+      <h3 id='14'></h3>
+    </div>
+    <div class="row05" >
+      <h3 id='35'></h3>
+      <h3  id='05' ></h3>
+      <h3 id='15'></h3>
+    </div>
+  </div>
+    </div>
+  </div>
 </div>
-<div class="row03">
- <h3 id='33'></h3>
- <h3 id='03'></h3>
-<h3 id='13'></h3>
 </div>
-<div class="row04">
- <h3 id='34'>sfADFDAGAGDA</h3>
- <h3  id='04' >sfsfa</h3>
-<h3 id='14'></h3>
-</div>
-<div class="row05" >
- <h3 id='35'></h3>
- <h3  id='05' ></h3>
- 
-<h3 id='15'></h3>
-</div>
-</div>
-</div>
-
-<div id="div2" style="display: none;">
-  <canvas id="myChart" style="border-radius: 10px; background-color: white; width:70%;max-width:900px;height: 50%;max-height: 340px; position: absolute;top: 2.75vh;left: 50%; margin-top: 0px;margin-left: 30px;box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;"></canvas>
-<script>
-  
-   
-atomic values in dbms
-
-
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{ 
-      data: {{heartRate}},
-      borderColor: "red",
-      fill: false
-    }, { 
-      data: {{temp}},
-      borderColor: "blue",
-      fill: false
-    }]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
-</script></div>
-<div>
-<button id="btn" onclick="myFunction()" style="margin: 10px; width: 8%;height: 8vh;border-radius: 10px;background-color: white; display:inline-block;  box-shadow:rgb(0, 0, 0, 0.4) -1px 1px 1px 1px, rgba(0, 0, 0, 0.3) -5px 5px, rgba(0, 0, 0, 0.2) -10px 10px, rgba(0, 0, 0, 0.1) -15px 15px, rgba(0, 0, 0, 0.05) -20px 20px;">PULL</button>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        $("button").click(function(){
-          $("#div2").toggle();
-        });
-      });
-    </script>
-  </body>
-
-  
+{%endfor%}
+</body>
 </html>
