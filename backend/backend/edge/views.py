@@ -85,8 +85,6 @@ def vital_signs_chart(request):
                 'heart_rates': heart_rates,
                 'temperature': temperatures,
             })
-    for d in data:
-        print(d)
     return render(request, 'edge/chart.html', {'data': data})
 
 @api_view(['POST'])
