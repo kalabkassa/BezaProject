@@ -80,10 +80,10 @@ def vital_signs_chart(request):
                 temperatures.append(vital.temp)
                 timestamps.append(vital.timestamp)
             data.append({
-                'patient': patient.user.get_username(),
+                'name': patient.user.get_username(),
                 'timestamps': timestamps,
                 'heart_rates': heart_rates,
-                'temperatures': temperatures,
+                'temperature': temperatures,
             })
     for d in data:
         print(d)

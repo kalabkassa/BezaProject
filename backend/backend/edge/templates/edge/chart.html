@@ -47,20 +47,18 @@
     {%for d in data%}
     <div class="dropdown">
         <button class="dropdown-button">
-            <span>{{d.patient}}</span>
+            <span>{{d.name}}</span>
         </button>
         <div class="dropdown-content" id="dropdownContent">
-            <canvas id="vitalSignsChart"></canvas>
+            <canvas id="{{d.name}}" style="display: block; box-sizing: border-box; height: 400px; width: 800px;" width="800" height="400"></canvas>
         </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var ctx = document.getElementById('vitalSignsChart').getContext('2d');
-            console.log({{d.heart_rate}})
-            var chartData =JSON.parse("{{d|safe}}");
+            var ctx = document.getElementById("{{d.name}}").getContext('2d');
             // <block:data:2>
-            const data = chartData.heart_rates;
-            const data2 = chartData.tempratures;
+            const data = {{d.heart_rates}};
+            const data2 = {{d.temperature}};
             let prev = 100;
             let prev2 = 80;
             for (let i = 0; i < 1000; i++) {
@@ -109,7 +107,7 @@
             const chart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: chartData.timestamps,
+                labels: {{d.timestamps|safe}},
                 datasets: [{
                     label: "Heart Rate",
                     borderColor: 'rgb(255,99,132)',
