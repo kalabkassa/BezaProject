@@ -47,7 +47,6 @@
   {% endblock scripts %}
 </head>
 <body>
-{% for patient in patients%}
 <div class="dropdown">
   <button class="dropdown-button">
     <span>{{patient.user.first_name}}</span>
@@ -100,6 +99,5 @@
   </div>
 </div>
 </div>
-{%endfor%}
 </body>
 </html>
