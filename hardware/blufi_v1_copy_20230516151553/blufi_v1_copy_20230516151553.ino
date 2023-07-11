@@ -275,7 +275,7 @@ void loop() {
     // }
     // doConnect = false;
 
-  LocalTime();     // it will take some time to sync time :)
+    LocalTime();     // it will take some time to sync time :)
 
   BLEDevice::getScan()->stop();
   if(connectToServer(tempDevice, tempServiceUUID, tempCharUUID, tempNotifyCallback))
