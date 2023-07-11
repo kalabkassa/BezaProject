@@ -3,6 +3,9 @@ import { BleManager, Characteristic, Device } from "react-native-ble-plx";
 import { PermissionsAndroid, Platform } from "react-native";
 import { atob } from "react-native-quick-base64";
 
+import {PERMISSIONS, requestMultiple} from 'react-native-permissions'; 
+import DeviceInfo from "react-native-device-info";
+  
 type PermissionCallback = (result: boolean) => void;
 
 const bleManager = new BleManager();
@@ -30,19 +33,39 @@ export default function useBLE(): BluetoothLowEnergyApi {
 
     const requestPermissions = async (callback: PermissionCallback) => {
         if (Platform.OS === 'android') {
-            const grantedStatus = await PermissionsAndroid.request(
-                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                {
-                    title: "Location Permission",
-                    message: "Bluetooth Low Energy Needs Location Permission",
-                    buttonNegative: "Cancel",
-                    buttonPositive: "OK",
-                    buttonNeutral: "Maybe Later",
-                },
+            const apiLevel = await DeviceInfo.getApiLevel();
+            if(apiLevel < 31){
+                const grantedStatus = await PermissionsAndroid.request(
+                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                    {
+                        title: "Location Permission",
+                        message: "Bluetooth Low Energy Needs Location Permission",
+                        buttonNegative: "Cancel",
+                        buttonPositive: "OK",
+                        buttonNeutral: "Maybe Later",
+                    },
 
-            );
+                );
             callback(grantedStatus === PermissionsAndroid.RESULTS.GRANTED)
-        }
+            }else{
+	            const result = await requestMultiple([
+		            PERMISSIONS.ANDROID.BLUETOOTH_SCAN,
+		            PERMISSIONS.ANDROID.BLUETOOTH_CONNECT,
+		            PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+                    ]);
+
+                const isAllPermissionGranted = 
+                result['android.permission.BLUETOOTH_SCAN'] ===
+                    PermissionsAndroid.RESULTS.GRANTED &&
+                result['android.permission.BLUETOOTH_CONNECT'] ===
+                    PermissionsAndroid.RESULTS.GRANTED &&
+                result['android.permission.ACCESS_FINE_LOCATION'] ===
+                    PermissionsAndroid.RESULTS.GRANTED;
+                callback(isAllPermissionGranted);
+	        }
+	}else{
+	    callback(true);
+	}
     };
 
     const isDuplicateDevice = (devices: Device[], nextDevice: Device) =>
@@ -53,13 +76,15 @@ export default function useBLE(): BluetoothLowEnergyApi {
             if (error) {
                 console.log(error);
             }
-            if (device.name?.includes("Polar")||device.name?.includes("CORE")) {
-                setAllDevices(prevState => {
-                    if (!isDuplicateDevice(prevState, device)) {
-                        return [...prevState, device];
-                    }
-                    return prevState;
-                })
+            if(device){
+                if (device.name?.includes("Polar")||device.name?.includes("CORE")) {
+                    setAllDevices(prevState => {
+                        if (!isDuplicateDevice(prevState, device)) {
+                            return [...prevState, device];
+                        }
+                        return prevState;
+                    })
+                }
             }
         })
     };
