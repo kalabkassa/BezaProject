@@ -32,7 +32,7 @@ const char* time_zone = "CET-1CEST,M3.5.0,M10.5.0/3";  // TimeZone rule for Euro
 
 const char* SERVICE_UUIDS[DEVICE_COUNT] = {
   "00001809-0000-1000-8000-00805f9b34fb", //temp
-  "0000180f-0000-1000-8000-00805f9b34fb" //heart rate
+  "0000180d-0000-1000-8000-00805f9b34fb" //heart rate
 };
 const char* NOTIFY_CHARACTERISTIC_UUIDS[DEVICE_COUNT] = {
   "00002a1c-0000-1000-8000-00805f9b34fb" //temp
@@ -189,16 +189,16 @@ bool connectToDevice(uint8_t deviceIndex) {
   }
 
   pNotifyCharacteristics[deviceIndex] = pRemoteService->getCharacteristic(BLEUUID(NOTIFY_CHARACTERISTIC_UUIDS[deviceIndex]));
-  pReadCharacteristics[deviceIndex] = pRemoteService->getCharacteristic(BLEUUID(READ_CHARACTERISTIC_UUIDS[deviceIndex]));
+  // pReadCharacteristics[deviceIndex] = pRemoteService->getCharacteristic(BLEUUID(READ_CHARACTERISTIC_UUIDS[deviceIndex]));
 
-  if (pNotifyCharacteristics[deviceIndex] == nullptr || pReadCharacteristics[deviceIndex] == nullptr) {
+  if (pNotifyCharacteristics[deviceIndex] == nullptr){ //|| pReadCharacteristics[deviceIndex] == nullptr) {
     Serial.println("Failed to find characteristics.");
     pClients[deviceIndex]->disconnect();
     return false;
   }
   
   pNotifyCharacteristics[deviceIndex]->registerForNotify(std::bind(deviceNotifyCallback, deviceIndex, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
-  pReadCharacteristics[deviceIndex]->registerForNotify(std::bind(deviceReadCallback, deviceIndex, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+  // pReadCharacteristics[deviceIndex]->registerForNotify(std::bind(deviceReadCallback, deviceIndex, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
   return true;
 }

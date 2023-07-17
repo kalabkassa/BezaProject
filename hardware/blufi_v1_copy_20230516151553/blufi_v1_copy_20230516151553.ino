@@ -1,4 +1,4 @@
-#include "BLEDevice.h"
+#include <BLEDevice.h>
 #include <WiFi.h>
 #include <WebSocketClient.h>
 
@@ -37,6 +37,7 @@ static BLEAdvertisedDevice* heartrateDevice;
 
 std::string tempData;
 std::string heartrateData;
+std::string espID = "00001";
 
 const char* ntpServer1 = "pool.ntp.org";
 const char* ntpServer2 = "time.nist.gov";
@@ -89,16 +90,13 @@ static void nonninnotifyCallback(
 
 static void tempNotifyCallback(
   BLERemoteCharacteristic* pBLERemoteCharacteristic, uint8_t* pData, size_t length, bool isNotify) {
-    uint32_t data = pData[3];
-    data = data << 16;
-    data += pData[2];
+    uint32_t data = pData[2];
     data = data << 8;
     data += pData[1];
     float temp = (float)data;
     int expo = (int)pData[4];
     expo -= 256;
     temp = temp*pow(10,expo);
-    Serial.println(temp);
 
     tempData = std::to_string(temp);
 }
@@ -107,8 +105,10 @@ static void heartrateNotifyCallback(
     // for (int i = 0; i < length; i++)
     // Serial.println(pData[1]);
     heartrateData = std::to_string(pData[1]);
-    std::string data = heartrateData + "," + tempData + "," + LocalTime();
-    serverUpdate(data.c_str());
+    tempData = tempData != ""? tempData : "0.0";
+    std::string sdata = espID + "," + heartrateData + "," + tempData + "," + LocalTime();
+    Serial.println(sdata.c_str());
+    serverUpdate(sdata.c_str());
 }
 
 class MyClientCallback : public BLEClientCallbacks {
@@ -165,6 +165,10 @@ bool connectToServer(BLEAdvertisedDevice* device, BLEUUID serviceUUID, BLEUUID c
 
     if(pRemoteCharacteristic->canNotify())
       pRemoteCharacteristic->registerForNotify(callback);
+    else if(pRemoteCharacteristic->canIndicate()){
+      pRemoteCharacteristic->registerForNotify(callback, false);
+      Serial.println("got it");
+    }
 
     connected = true;
     return true;

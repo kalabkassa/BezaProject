@@ -1,5 +1,5 @@
 import json
-from .models import Vital, Patient, get_user_model
+from .models import Vital, Patient, get_user_model, ESP
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
  
@@ -37,7 +37,7 @@ class edgeConsumer(WebsocketConsumer):
         #     'time': data[2],
         # }))
         query = Vital.objects.create(userID=user,heartRate=float(data[1]), temp= float(data[2]),timestamp=(data[3]+","+data[4]))
-        # query.save()
+        query.save()
 
 class tempConsumer(WebsocketConsumer):
     def connect(self):
@@ -64,10 +64,11 @@ class tempConsumer(WebsocketConsumer):
         data = event['data'].split(',')
         print(data)
         self.send(text_data=json.dumps({
-            'heart_rate':int(data[0]),
-            'temp': round(float(data[1]), 4),
-            'time': data[2],
+            'heart_rate':int(data[1]),
+            'temp': round(float(data[2]), 4),
+            'time': data[3],
         }))
-        query = Vital.objects.create(heartRate=data[0], temp= round(float(data[1]), 4),timestamp=data[2])
+        espID = ESP.objects.get(espID=data[0])
+        query = Vital.objects.create(espID=espID, userID=espID.userID, heartRate=data[1], temp= round(float(data[2]), 4),timestamp=data[3])
         query.save()
 
