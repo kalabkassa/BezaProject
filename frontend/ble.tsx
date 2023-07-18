@@ -39,7 +39,7 @@ var i =0;
 var con = true;
 var averageHB=0;
 var averageTemp=0;
-var socket = new WebSocket('ws://192.168.1.8:8000/update/');
+var socket = new WebSocket('ws://192.168.1.9:8000/update/');
 
 
 function Ble({ navigation }): JSX.Element {
