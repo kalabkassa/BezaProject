@@ -9,8 +9,14 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=10, null=True)
 
+    def __str__(self):
+        return self.email
+
 class Doctor(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.get_username()
 
 class Patient(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
@@ -22,11 +28,17 @@ class Patient(models.Model):
         ('F', 'Female'),
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
+
+    def __str__(self):
+        return self.user.get_username()
     
 
 class ESP(models.Model):
     userID = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True)
     espID = models.CharField(max_length=100) 
+
+    def __str__(self):
+        return self.espID
 
 class Vital(models.Model):
     userID = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True)
@@ -35,4 +47,7 @@ class Vital(models.Model):
     temp = models.IntegerField(null=True)
     spo2 = models.IntegerField(null=True)
     timestamp = models.CharField(default='nan', max_length=30)
+
+    def __str__(self):
+        return self.userID.user.get_username()
     

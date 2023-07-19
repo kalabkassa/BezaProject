@@ -9,10 +9,10 @@
 
 typedef std::function<void(BLERemoteCharacteristic* pBLERemoteCharacteristic, uint8_t* pData, size_t length, bool isNotify)> notify_callback;
 
-const char* ssid     = "KASA";
-const char* password = "ks3510bn";
+const char* ssid     = "Galaxy S22CD73";
+const char* password = "123456789";
 char path[] = "/update/temp/";
-char host[] = "192.168.1.8";
+char host[] = "192.168.81.14";
 uint16_t port = 8000;
 
 WebSocketClient webSocketClient;

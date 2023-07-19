@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'; // Replace with the ap
 import { ReloadInstructions } from 'react-native/Libraries/NewAppScreen';
 
 
-var socket = new WebSocket('ws://192.168.81.203:8000/update/temp/');
+var socket = new WebSocket('ws://192.168.1.9:8000/update/temp/');
 var con = false;
 var temp_data = [];
 
@@ -118,7 +118,7 @@ const MainPage = ({ navigation }) => {
             const sessionToken = await AsyncStorage.getItem('sessionId');
             console.log(sessionToken);
             // Make API request to Django logout endpoint to invalidate the session
-            await axiosInstance.post('http://192.168.81.203:8000/logout/');
+            await axiosInstance.post('http://192.168.1.9:8000/logout/');
 
             // Remove the session token from AsyncStorage
             await AsyncStorage.removeItem('sessionId');

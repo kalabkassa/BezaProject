@@ -21,7 +21,7 @@ const Dashboard = ({ navigation }) => {
           const sessionToken = await AsyncStorage.getItem('sessionId');
           console.log(sessionToken);
           // Make API request to Django logout endpoint to invalidate the session
-          await axiosInstance.post('http://192.168.81.203:8000/logout/');
+          await axiosInstance.post('http://192.168.1.9:8000/logout/');
   
           // Remove the session token from AsyncStorage
           await AsyncStorage.removeItem('sessionId');
