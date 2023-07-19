@@ -47,6 +47,7 @@ export default function useBLE(): BluetoothLowEnergyApi {
 
                 );
             callback(grantedStatus === PermissionsAndroid.RESULTS.GRANTED)
+            console.log
             }else{
 	            const result = await requestMultiple([
 		            PERMISSIONS.ANDROID.BLUETOOTH_SCAN,
@@ -62,7 +63,8 @@ export default function useBLE(): BluetoothLowEnergyApi {
                 result['android.permission.ACCESS_FINE_LOCATION'] ===
                     PermissionsAndroid.RESULTS.GRANTED;
                 callback(isAllPermissionGranted);
-	        }
+                console.log(result['android.permission.ACCESS_FINE_LOCATION']);
+	        } 
 	}else{
 	    callback(true);
 	}

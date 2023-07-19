@@ -4,7 +4,7 @@ const axiosInstance = axios.create();
 
 // Intercept requests and include the CSRF token in the headers
 axiosInstance.interceptors.request.use(async (config) => {
-    const csrfToken = await axios.get('http://192.168.1.8:8000/getcsrf/'); // Replace with the actual CSRF token
+    const csrfToken = await axios.get('http://192.168.81.203:8000/getcsrf/'); // Replace with the actual CSRF token
     config.headers['X-CSRFToken'] = csrfToken.data.csrfToken;
     return config;
 });

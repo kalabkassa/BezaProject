@@ -24,7 +24,7 @@ export default function LoginPage (props){
       return;
     } 
     try {
-      const response = await axiosInstance.post('http://192.168.1.8:8000/patientlogin/', {
+      const response = await axiosInstance.post('http://192.168.81.203:8000/patientlogin/', {
         email: email,
         password: password,
       })
