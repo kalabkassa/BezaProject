@@ -1,0 +1,157 @@
+<!-- chart.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .dropdown {
+          position: relative;
+          display: block;
+        }
+    
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 1920px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+    
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+    
+        .dropdown-button {
+          display: flex;
+          align-items: center;
+          padding: 8px;
+          border: none;
+          background: none;
+          cursor: pointer;
+          font-size: 16px;
+        }
+    
+        .dropdown-button span {
+          margin-right: 5px;
+        }
+    
+        .dropdown-button::after {
+          content: "\25BE";
+          margin-left: 5px;
+        }
+      </style>
+    <title>Vital Signs Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    {%for d in data%}
+    <div class="dropdown">
+        <button class="dropdown-button">
+            <span>{{d.name}}</span>
+        </button>
+        <div class="dropdown-content" id="dropdownContent">
+            <canvas id="{{d.name}}" style="display: block; box-sizing: border-box; height: 400px; width: 800px;" width="800" height="400"></canvas>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById("{{d.name}}").getContext('2d');
+            // <block:data:2>
+            const data = {{d.heart_rates}};
+            const data2 = {{d.temperature}};
+            let prev = 100;
+            let prev2 = 80;
+            for (let i = 0; i < 1000; i++) {
+            prev += 5 - Math.random() * 10;
+            data.push({x: i, y: prev});
+            prev2 += 5 - Math.random() * 10;
+            data2.push({x: i, y: prev2});
+            }
+            // </block:data>
+
+            // <block:animation:1>
+            const totalDuration = 10000;
+            const delayBetweenPoints = totalDuration / data.length;
+            const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+            const animation = {
+            x: {
+                type: 'number',
+                easing: 'linear',
+                duration: delayBetweenPoints,
+                from: NaN, // the point is initially skipped
+                delay(ctx) {
+                if (ctx.type !== 'data' || ctx.xStarted) {
+                    return 0;
+                }
+                ctx.xStarted = true;
+                return ctx.index * delayBetweenPoints;
+                }
+            },
+            y: {
+                type: 'number',
+                easing: 'linear',
+                duration: delayBetweenPoints,
+                from: previousY,
+                delay(ctx) {
+                if (ctx.type !== 'data' || ctx.yStarted) {
+                    return 0;
+                }
+                ctx.yStarted = true;
+                return ctx.index * delayBetweenPoints;
+                }
+            }
+            };
+            // </block:animation>
+
+            // <block:config:0>
+            const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{d.timestamps|safe}},
+                datasets: [{
+                    label: "Heart Rate",
+                    borderColor: 'rgb(255,99,132)',
+                    borderWidth: 1,
+                    radius: 0,
+                    data: data,
+                },
+                {
+                    label: "Temprature",
+                    borderColor: 'rgb(54,162,235)',
+                    borderWidth: 1,
+                    radius: 0,
+                    data: data2,
+                }]
+            },
+            options: {
+                animation,
+                interaction: {
+                intersect: false
+                },
+                plugins: {
+                legend: false
+                },
+                scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Timestamp'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Value'
+                            }
+                        }
+                }
+            }
+            });
+            // </block:config>
+        });
+    </script>
+    {%endfor%}
+</body>
+</html>

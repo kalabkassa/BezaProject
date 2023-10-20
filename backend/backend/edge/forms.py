@@ -21,3 +21,8 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = ['first_name', 'last_name', 'email', 'password1', 'password2', 'phone_number']
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Search', max_length=100)
+

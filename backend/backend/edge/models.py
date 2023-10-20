@@ -50,4 +50,12 @@ class Vital(models.Model):
 
     def __str__(self):
         return self.userID.user.get_username()
+
+class LocationData(models.Model):
+    userID = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True)
+    locationEnabled = models.BooleanField(default=False)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
     
+    def __str__(self):
+        return self.userID.user.get_username()

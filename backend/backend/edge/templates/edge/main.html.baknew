@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block scripts %} {% load static %}
+    <script src="{% static 'edge/js/try.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'edge/css/mystyle.css' %}" />
+    {% endblock scripts %}
+</head>
+<body>
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Time Stamp</th>
+                    <th>Temperature (&deg;C)</th>
+                    <th>Heart Rate (BPM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>09:00 AM</td>
+                    <td>25.5</td>
+                    <td>75</td>
+                </tr>
+                <tr>
+                    <td>09:15 AM</td>
+                    <td>26.0</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>09:30 AM</td>
+                    <td>25.8</td>
+                    <td>78</td>
+                </tr>
+                <tr>
+                    <td>09:45 AM</td>
+                    <td>26.2</td>
+                    <td>82</td>
+                </tr>
+                <tr>
+                    <td>10:00 AM</td>
+                    <td>26.5</td>
+                    <td>79</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="average-section">
+            <div class="average-card">
+                <h3>Average Temperature</h3>
+                <p id="avgTemperature">25.8 &deg;C</p>
+            </div>
+            <div class="average-card">
+                <h3>Average Heart Rate</h3>
+                <p id="avgHeartRate">78 BPM</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

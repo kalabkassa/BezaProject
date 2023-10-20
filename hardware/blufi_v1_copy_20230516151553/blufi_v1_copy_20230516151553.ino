@@ -41,8 +41,8 @@ std::string espID = "00001";
 
 const char* ntpServer1 = "pool.ntp.org";
 const char* ntpServer2 = "time.nist.gov";
-const long  gmtOffset_sec = 3600;
-const int   daylightOffset_sec = 3600;
+const long  gmtOffset_sec = 0;
+const int   daylightOffset_sec = 0;
 
 const char* time_zone = "CET-1CEST,M3.5.0,M10.5.0/3";  // TimeZone rule for Europe/Rome including daylight adjustment rules (optional)
 
@@ -230,6 +230,7 @@ void websocket_setup(){
 
 void setup() {
   Serial.begin(115200);
+  print(LocalTime());
   wifi_setup();
   websocket_setup();
   sntp_set_time_sync_notification_cb( timeavailable );

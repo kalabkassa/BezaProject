@@ -1,0 +1,8 @@
+{% extends 'edge/navbar.html' %} {% block title %}Semantic Search{% endblock title %}
+{% block content %}
+  <form method="GET" action="{% url 'search_results' %}">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Search</button>
+  </form>
+{% endblock %}

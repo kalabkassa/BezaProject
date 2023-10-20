@@ -1,0 +1,47 @@
+{% extends 'edge/base.html' %} 
+{% block title %}CodePen Demo{% endblock title %}
+{%block navbar %}
+<nav class="navbar navbar-expand-custom navbar-mainbg">
+  <a class="navbar-brand navbar-logo" href="#">Navbar</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <i class="fas fa-bars text-white"></i>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <div
+        class="hori-selector"
+        style="top: 0px; left: 435.984px; height: 62.5px; width: 139.406px"
+      >
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}"
+          ><i class="fas fa-tachometer-alt"></i>Live Stream</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'vital' %}"
+          ><i class="far fa-chart-bar"></i>Charts</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'search_results' %}"
+          ><i class="fa fa-search"></i>Semantic Search</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}"
+          ><i class="fa fa-sign-out-alt"></i>Logout</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock navbar %}
