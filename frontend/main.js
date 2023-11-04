@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import axiosInstance from './axiosInstance';
-import { Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, TouchableOpacity, FlatList, Switch } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Replace with the appropriate icon library
 
 import { ReloadInstructions } from 'react-native/Libraries/NewAppScreen';
+import LocationComponent from './location';
 
-
-var socket = new WebSocket('ws://192.168.1.9:8000/update/temp/');
+var server = 'ws://192.168.8.7:8000/update/temp/';
+var socket = new WebSocket(server);
 var con = false;
 var temp_data = [];
 
@@ -41,7 +42,27 @@ const MainPage = ({ navigation }) => {
     const [time4, settime4] = React.useState('');
     const [time5, settime5] = React.useState('');
     const [username, setUsername] = React.useState('');
+    const [locationDataEnabled, setLocationDataEnabled] = useState(false);
+ 
+    // Function to toggle location data collection
+    const toggleLocationDataCollection = async () => {
+      setLocationDataEnabled(!locationDataEnabled);
+      AsyncStorage.setItem('locationDataEnabled', JSON.stringify(!locationDataEnabled)); 
+    };
+     
+    console.log(LocationComponent());
 
+
+    AsyncStorage.getItem('locationDataEnabled')
+      .then((value) => {
+        console.log(value);
+        if (value) {
+          setLocationDataEnabled(JSON.parse(value));
+        }
+      })
+      .catch((error) => {
+        console.error('Error retrieving location data preference:', error);
+      });
     AsyncStorage.getItem('sessionId')
         .then((sessionId) => {
             if (sessionId !== null) {
@@ -118,7 +139,8 @@ const MainPage = ({ navigation }) => {
             const sessionToken = await AsyncStorage.getItem('sessionId');
             console.log(sessionToken);
             // Make API request to Django logout endpoint to invalidate the session
-            await axiosInstance.post('http://192.168.1.9:8000/logout/');
+            await axiosInstance.post('http://192.168.8.7:8000/logout/');
+            console.log(await AsyncStorage.getItem('address'));
 
             // Remove the session token from AsyncStorage
             await AsyncStorage.removeItem('sessionId');
@@ -207,12 +229,11 @@ const MainPage = ({ navigation }) => {
                         <Text>{temp5}</Text>
                         <Text>{hb5}</Text>
 
-                    </View>
-
+                    </View> 
                 </View>
 
             </View>
-
+<Switch value={locationDataEnabled} onValueChange={toggleLocationDataCollection}/>
         </View>
     );
 };

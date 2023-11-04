@@ -1,93 +1,52 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      .dropdown {
-        position: relative;
-        display: block;
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 1920px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-
-      .dropdown-button {
-        display: flex;
-        align-items: center;
-        padding: 8px;
-        border: none;
-        background: none;
-        cursor: pointer;
-        font-size: 16px;
-      }
-
-      .dropdown-button span {
-        margin-right: 5px;
-      }
-
-      .dropdown-button::after {
-        content: "\25BE";
-        margin-left: 5px;
-      }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    {% block scripts %} {% load static %}
-    <script src="{% static 'edge/js/try.js' %}" defer></script>
-    <link rel="stylesheet" href="{% static 'edge/css/mystyle.css' %}" />
-    {% endblock scripts %}
-  </head>
-  <body>
-    <div class="Table01">
-      <div class="titlebar">
-        <div class="Title">
-          <h6>TIME</h6>
-          <h6>TEMPRATURE(&deg C)</h6>
-          <h6>HEART RATE(BPM)</h6>
-        </div>
-        <div class="avg">
-          <div class="heart">&#x2665</div> 
-          <h2 id="avgHB"></h2>
-          <span class="termo" >&#x1f321</span>
-          <h2 id="avgTemp"></h2>
-        </div>
-      </div>
-      <div class="info">
-        <div class="row01">
-          <h3 id="31"></h3>
-          <h3 id="01"></h3>
-          <h3 id="11"></h3>
-        </div>
-        <div class="row02">
-          <h3 id="32"></h3>
-          <h3 id="02"></h3>
-          <h3 id="12"></h3>
-        </div>
-        <div class="row03">
-          <h3 id="33"></h3>
-          <h3 id="03"></h3>
-          <h3 id="13"></h3>
-        </div>
-        <div class="row04">
-          <h3 id="34"></h3>
-          <h3 id="04"></h3>
-          <h3 id="14"></h3>
-        </div>
-        <div class="row05">
-          <h3 id="35"></h3>
-          <h3 id="05"></h3>
-          <h3 id="15"></h3>
-        </div>
-      </div>
+{% extends 'edge/navbar.html' %} {% block title %}Live Vital Stream{% endblock title %}
+{% block content %}
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Time Stamp</th>
+                    <th>Temperature (&deg;C)</th>
+                    <th>Heart Rate (BPM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows of data here -->
+                <tr>
+                    <td>09:00 AM</td>
+                    <td>25.5</td>
+                    <td>75</td>
+                </tr>
+                <tr>
+                    <td>09:15 AM</td>
+                    <td>26.0</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>09:30 AM</td>
+                    <td>25.8</td>
+                    <td>78</td>
+                </tr>
+                <tr>
+                    <td>09:45 AM</td>
+                    <td>26.2</td>
+                    <td>82</td>
+                </tr>
+                <tr>
+                    <td>10:00 AM</td>
+                    <td>26.5</td>
+                    <td>79</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <button>wierd</button>
-  </body>
-</html>
+    <div class="summary">
+        <div class="average-card">
+            <h3>Average Temperature</h3>
+            <p id="avgTemperature">25.8 &deg;C</p>
+        </div>
+        <div class="average-card">
+            <h3>Average Heart Rate</h3>
+            <p id="avgHeartRate">78 BPM</p>
+        </div>
+    </div>
+{% endblock %}

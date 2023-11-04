@@ -39,7 +39,8 @@ var i =0;
 var con = true;
 var averageHB=0;
 var averageTemp=0;
-var socket = new WebSocket('ws://192.168.1.9:8000/update/');
+var server = 'ws://192.168.8.7:8000/update/';
+var socket = new WebSocket(server);
 
 
 function Ble({ navigation }): JSX.Element {
@@ -108,9 +109,11 @@ function Ble({ navigation }): JSX.Element {
       let data = String(username)+","+String(heartRate.toFixed(2))+","+String(temp.toFixed(2))+","+String(time);
       if(con){
         socket.send(data);
-        console.log("sent");
+        console.log("sent");module.exports = async taskData => {
+  // Do stuff
+};
       }else{
-        socket = new WebSocket('ws://192.168.247.203:8000/update/');
+        socket = new WebSocket(server);
       }
     }
   },[new Date().getSeconds()])

@@ -27,6 +27,7 @@ class edgeConsumer(WebsocketConsumer):
             }
         )
     def update(self, event):
+        print(event['data'])
         data = event['data'].split(',')
         user = get_user_model().objects.get(email=data[0])
         user = Patient.objects.get(user=user.pk)

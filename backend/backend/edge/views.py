@@ -1,19 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, SearchForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import get_token
-from .models import Vital, Doctor, Patient
+from .models import Vital, Doctor, Patient, LocationData
 import json
-from datetime import datetime
+from datetime import datetime, date
 
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
+
+from .owl import onto
+from django.conf import settings
 
 def loginPage(request):
     form = UserRegistrationForm()
@@ -62,14 +65,18 @@ def home(request):
         vitals.append(Vital.objects.filter(userID=patient))
     print(patients)
     
-    return render(request, 'edge/main.html', {'patients': patients, 'vitals': vitals})
+    return render(request,'edge/main.html', {'patients': patients, 'vitals': vitals})
 
 @login_required
 def vital_signs_chart(request):
     doctor = Doctor.objects.get(user=request.user)
     patients =  Patient.objects.filter(doctor=doctor)
     data = []
-    for patient in patients:
+    form = SearchForm(request.GET)
+
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        patient =  Patient.objects.get(id=query)
         vitals=Vital.objects.filter(userID=patient)
         timestamps = []
         heart_rates = []
@@ -85,7 +92,51 @@ def vital_signs_chart(request):
                 'heart_rates': heart_rates,
                 'temperature': temperatures,
             })
-    return render(request, 'edge/chart.html', {'data': data})
+
+    # for patient in patients:
+    #     vitals=Vital.objects.filter(userID=patient)
+    #     timestamps = []
+    #     heart_rates = []
+    #     temperatures = []
+    #     if vitals:
+    #         for vital in vitals:
+    #             heart_rates.append(vital.heartRate)
+    #             temperatures.append(vital.temp)
+    #             timestamps.append(vital.timestamp)
+    #         data.append({
+    #             'name': patient.user.get_username(),
+    #             'timestamps': timestamps,
+    #             'heart_rates': heart_rates,
+    #             'temperature': temperatures,
+    #         })
+    return render(request, 'edge/chart.html', {'data': data, 'form': form})
+
+@login_required
+def search_results(request):
+    form = SearchForm(request.GET)
+    results = []
+
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        patients =  Patient.objects.all()
+        
+        usersData = [{'id': patient.id, 'first_name': patient.user.first_name, 'last_name': patient.user.last_name, 'age': date.today().year - patient.date_of_birth.year, 
+                      'temprature': Vital.objects.filter(userID=patient).last().temp if Vital.objects.filter(userID=patient).last() else 0, 
+                      'heart_rate': Vital.objects.filter(userID=patient).last().heartRate if Vital.objects.filter(userID=patient).last() else 0} for patient in patients]
+        results = onto(settings.ONTO_DIR, usersData, query)
+    return render(request, 'edge/search_results.html', {'results': results, 'form': form})
+
+@login_required
+def search_patient(request):
+    form = SearchForm(request.GET)
+
+    if form.is_valid():
+        query = form.cleaned_data['query']
+
+@login_required
+def logoutPage(request):
+    logout(request)
+    return redirect(loginPage)
 
 @api_view(['POST'])
 def signup(request):
@@ -126,7 +177,7 @@ def patientLogin(request):
     return Response({'error': 'Invalid request'}, status=400)
 
 @api_view(['POST'])
-def logoutPage(request):
+def restlogoutPage(request):
     print('logout')
     logout(request)
     return Response({'message': 'Logout successful'})
@@ -136,3 +187,15 @@ def get_csrf_token(request):
     csrf_token = get_token(request)
     print(csrf_token)
     return JsonResponse({'csrfToken': csrf_token})
+
+@api_view(['POST'])
+def location(request):
+    if request.method == 'POST':
+        patient = get_user_model().objects.get(email = request.data['user'])
+        patient = Patient.objects.get(user= patient.pk)
+        latitude = request.data['latitude']
+        longitude = request.data['longitude']
+        locationEnabled = request.data['locationEnabled']
+        LocationData.objects.create(userID=patient, latitude=latitude, longitude=longitude, locationEnabled = locationEnabled)
+    return Response({'message': 'sent successfully'})
+

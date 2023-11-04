@@ -44,7 +44,7 @@ const SignupPage = ({navigation}) => {
     }
 
     // Send signup data to the backend
-    axiosInstance.post('http://192.168.1.9:8000/patientsignup/', {
+    axiosInstance.post('http://192.168.8.7:8000/patientsignup/', {
       fullName,
       email,
       phoneNumber,

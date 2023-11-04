@@ -1,0 +1,115 @@
+body {
+  background-color: white;
+}
+.Table01{
+    width: 45%; 
+
+              height: 35vh; 
+              background-color: white;
+              margin: 1%;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              border-radius: 10px;
+              border-color: #1f1f20;
+              border-width: 5%, 5%, 5%, 5%;
+              box-shadow:rgb(0, 0, 0, 0.4) -5px 5px 5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;
+}
+.Table01 .titlebar{
+  display: flex;
+  justify-content: space-between;
+  
+
+
+}.Table01 .Title{
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+
+}
+ h6{
+   font-size: 2vmin;
+ }
+ h3{
+  font-size: 2vmin;
+}
+
+.Table01 .avg {
+  background-color: white;
+  display: flex;
+  
+  justify-content: space-around;
+
+  width:25%;
+     height:9vh; 
+     box-shadow: rgb(255, 0, 0,0.4) -1px 1px 1px 1px ,rgba(0, 0, 0, 0.4) -6px 6px;
+     border-radius: 5px;
+}
+.heart{
+  color: #e00;
+  animation: beat .25s infinite alternate;
+  transform-origin: center;
+  font-size: 7vmin;
+  margin: 3%;
+  
+}
+@keyframes beat {
+  to {transform: scale(1,1.25);}
+}
+.termo{
+  color: #e00;
+  font-size: 6vmin;
+  margin: 3%;
+}
+.Table01 .info {
+  
+  top: 14vh;
+  left: 1.5%;
+  background-color: white;
+  width: 70%;
+  height: 23.6vh;
+  display: flex;
+  flex-direction: column;
+}
+.row01{
+  height: 4vh;
+
+ border-radius: 10px;
+ border-top: px solid red;
+ 
+ display: flex;
+ gap: 20%;
+ width:100%;
+}
+.row02{
+  height: 4vh;
+  width: 100%;
+  display: flex;
+  gap: 20%;
+    border-radius: 10px;
+    border-top: 1px solid red;
+}
+.row03{
+  height: 4vh;
+  width: 100%;
+   display: flex;
+ gap: 20%;
+border-radius: 10px;
+border-top: 1px solid red;
+}
+.row04{
+  height: 4vh;
+  width: 100%;
+   display: flex;
+ gap: 20%;
+border-radius: 10px;
+border-top: 1px solid red;
+}
+.row05{
+  height: 4vh;
+  width: 100%;
+   display: flex;
+ gap: 20%;
+border-radius: 10px;
+border-top: 1px solid red;
+}
