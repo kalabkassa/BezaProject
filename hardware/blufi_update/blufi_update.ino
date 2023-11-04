@@ -16,10 +16,10 @@
 
 // Global variables
 //wifi and websocket server setup
-const char* ssid     = "mi";
-const char* password = "pipipipi";
+const char* ssid     = "Galaxy S22CD73";
+const char* password = "123456789";
 char path[] = "/update/temp/";
-char host[] = "192.168.43.189";
+char host[] = "192.168.91.14";
 uint16_t port = 8000;
 
 //NTP server setup 
@@ -29,7 +29,7 @@ const long  gmtOffset_sec = 3600;
 const int   daylightOffset_sec = 3600;
 
 const char* time_zone = "CET-1CEST,M3.5.0,M10.5.0/3";  // TimeZone rule for Europe/Rome including daylight adjustment rules (optional)
-
+//const char* tme_zone="EAT-3";
 const char* SERVICE_UUIDS[DEVICE_COUNT] = {
   "00001809-0000-1000-8000-00805f9b34fb", //temp
   "0000180d-0000-1000-8000-00805f9b34fb" //heart rate

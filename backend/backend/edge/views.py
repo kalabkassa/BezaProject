@@ -134,4 +134,5 @@ def logoutPage(request):
 @api_view(['GET'])
 def get_csrf_token(request):
     csrf_token = get_token(request)
+    print(csrf_token)
     return JsonResponse({'csrfToken': csrf_token})

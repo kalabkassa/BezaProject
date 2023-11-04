@@ -1,5 +1,5 @@
 #include <BLEDevice.h>
-#include <WiFi.h>
+#include <WiFi.h>  
 #include <WebSocketClient.h>
 
 #include "time.h"
@@ -12,7 +12,7 @@ typedef std::function<void(BLERemoteCharacteristic* pBLERemoteCharacteristic, ui
 const char* ssid     = "Galaxy S22CD73";
 const char* password = "123456789";
 char path[] = "/update/temp/";
-char host[] = "192.168.81.14";
+char host[] = "192.168.91.14";
 uint16_t port = 8000;
 
 WebSocketClient webSocketClient;
@@ -41,11 +41,11 @@ std::string espID = "00001";
 
 const char* ntpServer1 = "pool.ntp.org";
 const char* ntpServer2 = "time.nist.gov";
-const long  gmtOffset_sec = 3600;
+const long  gmtOffset_sec = 0;
 const int   daylightOffset_sec = 3600;
 
 const char* time_zone = "CET-1CEST,M3.5.0,M10.5.0/3";  // TimeZone rule for Europe/Rome including daylight adjustment rules (optional)
-
+//const char* time_zone = "EAT-3";
 std::string LocalTime()
 {
   struct tm timeinfo;
