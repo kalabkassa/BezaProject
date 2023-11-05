@@ -63,7 +63,7 @@ def home(request):
     vitals = []
     for patient in patients:
         vitals.append(Vital.objects.filter(userID=patient))
-    print(patients)
+    # print(patients)
     
     return render(request,'edge/main.html', {'patients': patients, 'vitals': vitals})
 
@@ -185,7 +185,6 @@ def restlogoutPage(request):
 @api_view(['GET'])
 def get_csrf_token(request):
     csrf_token = get_token(request)
-    print(csrf_token)
     return JsonResponse({'csrfToken': csrf_token})
 
 @api_view(['POST'])
@@ -196,6 +195,6 @@ def location(request):
         latitude = request.data['latitude']
         longitude = request.data['longitude']
         locationEnabled = request.data['locationEnabled']
+        print(latitude, longitude)
         LocationData.objects.create(userID=patient, latitude=latitude, longitude=longitude, locationEnabled = locationEnabled)
     return Response({'message': 'sent successfully'})
-
