@@ -233,7 +233,9 @@ const MainPage = ({ navigation }) => {
                 </View>
 
             </View>
-<Switch value={locationDataEnabled} onValueChange={toggleLocationDataCollection}/>
+            <View style={{marginTop: 100}}>
+                <Switch value={locationDataEnabled} onValueChange={toggleLocationDataCollection}/>
+            </View>
         </View>
     );
 };

@@ -10,6 +10,7 @@ import {
   useColorScheme,
   View,
   FlatList,
+  Switch,
 } from 'react-native';
 
 import {
@@ -24,6 +25,8 @@ import axiosInstance from './axiosInstance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Replace with the appropriate icon library
 import Dashboard from './dashboard';
+import LocationComponent from './location';
+
 
 
 const theme = {
@@ -62,11 +65,21 @@ function Ble({ navigation }): JSX.Element {
   const [time4, settime4] = React.useState('');
   const [time5, settime5] = React.useState('');
   const [username, setUsername] = React.useState('');
+  const [locationDataEnabled, setLocationDataEnabled] = React.useState(false);
+
   const {requestPermissions, connectToDevice, scanForDevices, allDevices, currentDevice, heartRate, temp} = useBLE();
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  // Function to toggle location data collection
+  const toggleLocationDataCollection = async () => {
+    setLocationDataEnabled(!locationDataEnabled);
+    AsyncStorage.setItem('locationDataEnabled', JSON.stringify(!locationDataEnabled)); 
+  };
+   
+  console.log(LocationComponent());
 
   useEffect(()=>{
     AsyncStorage.getItem('sessionId')
@@ -225,6 +238,10 @@ function Ble({ navigation }): JSX.Element {
 
           </View>
 
+      </View>
+      <View style={{marginTop: 10, flexDirection: 'row'}}>
+        <Text style={{marginTop: 3, marginRight: 50, marginLeft: 10}}>Enable location data collection</Text>
+        <Switch value={locationDataEnabled} onValueChange={toggleLocationDataCollection}/>
       </View>
       </View>
        <View
