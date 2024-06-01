@@ -16,10 +16,10 @@
 
 // Global variables
 //wifi and websocket server setup
-const char* ssid     = "mi";
-const char* password = "pipipipi";
+const char* ssid     = "anton";
+const char* password = "@AMcenter2";
 char path[] = "/update/temp/";
-char host[] = "192.168.43.189";
+char host[] = "192.168.8.6";
 uint16_t port = 8000;
 
 //NTP server setup 

@@ -1,0 +1,1 @@
+sudo -iu postgres # to switch to postgresql user

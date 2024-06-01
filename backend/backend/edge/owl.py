@@ -1,6 +1,6 @@
 from owlready2 import *
 from rdflib import *
-from prettytable import PrettyTable
+# from prettytable import PrettyTable
 
 def onto(file_path, usersData, filters):
     onto = get_ontology(str(file_path)).load()

@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+
+import firebase_admin
+from firebase_admin import credentials
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 #ONTO_DIR = BASE_DIR/'ontology/Beza_Project101.rdf'
@@ -27,7 +31,7 @@ SECRET_KEY = 'django-insecure-_7hqf)a64qbq-vcjuf%34(hd*=20$d+m0uomla93ouvoz)ks86
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     'corsheaders',
     #local
     'edge',
+    'fcm_django',
 ]
 
 MIDDLEWARE = [
@@ -97,7 +102,7 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'test',
         'USER': 'postgres',
         'PASSWORD': 'temp',
         'HOST': '127.0.0.1',
@@ -154,3 +159,11 @@ STATIC_URL = 'static/css/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'edge.CustomUser'
 LOGIN_URL = '/login/'
+
+cred = credentials.Certificate(BASE_DIR/"serviceAccountKey.json")
+FCM = firebase_admin.initialize_app(cred)
+
+FCM_DJANGO_SETTINGS = {
+    "DEFAULT_FIREBASE_APP": FCM,
+    "FCM_SERVER_KEY": "AAAAC7OaQYs:APA91bH_2AnkzK37DpvijwAFvar78VRR7ziBG9KNrs-ksUbldEihYFGi4MggsN30bVQuGLYDYHp-TLVpVYACCz_D_Ztf4Bo-GbXyd61sGYS0FWyVNuZc5pHuE-SkeUS9XeEL_z2n5nMJ"
+}

@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 function App() {
    return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Main' screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName='ble' screenOptions={{headerShown: false}}>
         <Stack.Screen name='ble' component={Ble}/>
         <Stack.Screen name="Main" component={MainPage}/>
         <Stack.Screen name="Login" component={LoginPage} />

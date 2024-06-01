@@ -1,11 +1,11 @@
-{% extends 'edge/navbar.html' %} {% block title %}Vital Signs Chart{% endblock title %}
+{% extends 'edge/navbar.html' %} 
+{% block title %}Vital Signs Chart{% endblock title %} 
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div class="container">
     <h1>Search Results</h1>
     <form method="GET" action="{% url 'vital' %}" class="mb-4">
-        {% csrf_token %}
-        {{ form }}
+        {% csrf_token %} {{ form }}
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
     {% for d in data %}

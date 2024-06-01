@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "50257871243",
+    "project_id": "eshcm-df29b",
+    "storage_bucket": "eshcm-df29b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50257871243:android:50e114b964a970f01def8e",
+        "android_client_info": {
+          "package_name": "com.frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAER019PqR3ACJ98HFc6rgKuN5XHOYDI78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

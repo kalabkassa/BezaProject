@@ -224,7 +224,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Michelle</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Allen</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">27</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.76</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">31.76</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">64.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -254,7 +254,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kenneth</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wood</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">37</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.51</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">32.51</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">53.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -284,7 +284,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Robert</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meyer</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">54</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.99</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">33.99</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">98.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -364,7 +364,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laura</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Olson</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">41</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.23</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">32.23</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">104.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -404,7 +404,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Robert</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Martinez</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">55</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.94</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">33.94</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -454,7 +454,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dale</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cox</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">28</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.07</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">34.07</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">93.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -564,7 +564,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Victoria</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rodriguez</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">35</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.97</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">32.97</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">84.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -664,7 +664,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gary</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tate</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">23</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.35</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">35.35</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">97.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -694,7 +694,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Derek</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Francis</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">32</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.56</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">32.56</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">96.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -704,7 +704,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laura</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johnson</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">45</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.99</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">32.99</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">48.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -724,7 +724,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Joseph</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Santos</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">37</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.06</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">.06</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">53.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -904,7 +904,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Angela</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Williams</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">26</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.06</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">33.06</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">106.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -914,7 +914,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kurt</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Burns</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">24</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.63</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">33.63</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">113.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -934,7 +934,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cheryl</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morales</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.76</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">32.76</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">82.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -964,7 +964,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Julie</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sims</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">40</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.62</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">34.62</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">77.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -984,7 +984,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kyle</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Myers</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">24</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.34</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">34.56</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">120.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -1044,7 +1044,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Angela</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Smith</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">43</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.56</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">31.56</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">54.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -1074,7 +1074,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Christopher</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johnston</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">23</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.97</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">31.97</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">113.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -1094,7 +1094,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amber</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brown</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.98</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">35.98</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">115.0</heart_rate>
 </owl:NamedIndividual>
 
@@ -1124,7 +1124,7 @@
   <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heather</first_name>
   <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Leach</last_name>
   <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">23</age>
-  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.07</temprature>
+  <temprature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">34.07</temprature>
   <heart_rate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">90.0</heart_rate>
 </owl:NamedIndividual>
 

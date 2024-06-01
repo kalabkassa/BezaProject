@@ -1,33 +1,73 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
 import axiosInstance from './axiosInstance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import messaging from '@react-native-firebase/messaging';
 // import {Button, Title } from 'react-native-paper';
 
 const theme = {
-    primaryColor: '#2196F3',
-    secondaryColor: '#FFF',
-    accentColor: '#2197F2',
-    textColor: '#333',
-    placeholderColor: "#999",
-    errortextColor: "#FF3511",
+  primaryColor: '#2196F3',
+  secondaryColor: '#FFF',
+  accentColor: '#2197F2',
+  textColor: '#333',
+  placeholderColor: '#999',
+  errortextColor: '#FF3511',
 };
 
-export default function LoginPage (props){
+const getToken = async () => {
+  const token = await messaging().getToken();
+  console.log('Device Token:', token);
+  // Send the token to your Django backend
+  sendTokenToDjango(token);
+};
+
+const sendTokenToDjango = async token => {
+  try {
+    const response = await axiosInstance.post(
+      'http://192.168.8.6:8000/register-device-token/',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Include any additional headers or authentication tokens as needed
+        },
+        body: JSON.stringify({device_token: token}),
+      },
+    );
+
+    const data = await response;
+    console.log(data);
+  } catch (error) {
+    console.error('Error sending device token to Django:', error);
+  }
+};
+
+export default function LoginPage(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleLogin =async () => {
+  const handleLogin = async () => {
     if (email.trim() === '' || password === '') {
       setError('Please enter both email and password.');
       return;
-    } 
+    }
     try {
-      const response = await axiosInstance.post('http://192.168.8.7:8000/patientlogin/', {
-        email: email,
-        password: password,
-      })
+      const response = await axiosInstance.post(
+        'http://192.168.8.6:8000/patientlogin/',
+        {
+          email: email,
+          password: password,
+        },
+      );
       const setCookieHeader = response.headers['set-cookie'];
       let sessionId = null;
 
@@ -45,20 +85,23 @@ export default function LoginPage (props){
       }
 
       AsyncStorage.setItem('sessionId', sessionId)
-      .then(() => {
-        console.log('Session ID stored successfully.');
-      })
-      .catch((error) => {
-        console.error('Error storing session ID:', error);
-      });
-      AsyncStorage.setItem('username', response.data.username).then(()=>{}).catch((error)=>{});
+        .then(() => {
+          console.log('Session ID stored successfully.');
+        })
+        .catch(error => {
+          console.error('Error storing session ID:', error);
+        });
+      AsyncStorage.setItem('username', response.data.username)
+        .then(() => {})
+        .catch(error => {});
       // username = response.data.username;
+      getToken();
       props.navigation.navigate('ble');
-    // Handle the response from the backend
-    }catch(error){
+      // Handle the response from the backend
+    } catch (error) {
       // Handle any error that occurs during the request
       console.error(error);
-    };
+    }
   };
 
   return (
@@ -92,12 +135,14 @@ export default function LoginPage (props){
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => props.navigation.navigate('Signup')} style={styles.signupButton}>
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate('Signup')}
+        style={styles.signupButton}>
         <Text style={styles.link}> Create an Account</Text>
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

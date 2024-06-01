@@ -18,6 +18,18 @@ from django.http import JsonResponse
 from .owl import onto
 from django.conf import settings
 
+from fcm_django.models import FCMDevice
+from firebase_admin.messaging import Message, Notification
+from django.http import HttpResponse
+
+
+def test(request):
+    patients = []
+    doctor = Doctor.objects.get(user=request.user)
+    patients = Patient.objects.filter(doctor=doctor)
+    # return render(request, 'edge/stat.html', {'heartRate': 56, 'temp': 38})
+    return render(request, 'edge/stat.html', {'patients': patients})
+
 def loginPage(request):
     form = UserRegistrationForm()
     if request.user.is_authenticated:
@@ -111,7 +123,7 @@ def vital_signs_chart(request):
     #         })
     return render(request, 'edge/chart.html', {'data': data, 'form': form})
 
-@login_required
+
 def search_results(request):
     form = SearchForm(request.GET)
     results = []
@@ -189,12 +201,26 @@ def get_csrf_token(request):
 
 @api_view(['POST'])
 def location(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.data['user']:
         patient = get_user_model().objects.get(email = request.data['user'])
         patient = Patient.objects.get(user= patient.pk)
         latitude = request.data['latitude']
         longitude = request.data['longitude']
         locationEnabled = request.data['locationEnabled']
+        print(latitude, longitude)
         LocationData.objects.create(userID=patient, latitude=latitude, longitude=longitude, locationEnabled = locationEnabled)
     return Response({'message': 'sent successfully'})
 
+@api_view(['POST'])
+def register_device_token(request):
+    user = request.user  # Assuming you have user authentication
+    data = json.loads(request.data['body'])
+
+    # Extract the device_token
+    device_token = data['device_token']
+    if device_token:
+        # Create or update the device token associated with the user
+        FCMDevice.objects.update_or_create(user=user, registration_id= device_token)
+    else:
+        return Response({'error': 'erorr'})
+    return Response({'message': 'Device token registered successfully'})

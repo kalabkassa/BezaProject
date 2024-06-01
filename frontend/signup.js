@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
-import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import axiosInstance from './axiosInstance.js'
+import {
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import axiosInstance from './axiosInstance.js';
 
 // Theme
 const theme = {
@@ -9,8 +16,8 @@ const theme = {
   secondaryColor: '#FFF',
   accentColor: '#2197F2',
   textColor: '#333',
-  placeholderColor: "#999",
-  errortextColor: "#FF3511",
+  placeholderColor: '#999',
+  errortextColor: '#FF3511',
 };
 
 const SignupPage = ({navigation}) => {
@@ -44,39 +51,43 @@ const SignupPage = ({navigation}) => {
     }
 
     // Send signup data to the backend
-    axiosInstance.post('http://192.168.8.7:8000/patientsignup/', {
-      fullName,
-      email,
-      phoneNumber,
-      relativePhoneNumber,
-      password,
-      dateOfBirth,
-      gender,
-    })
-    .then(response => {
-      // Handle successful signup
-      navigation.navigate('Login')
-      console.log('Signup successful');
-      console.log(response.data);
-    })
-    .catch(error => {
-      // Handle signup error
-      console.error('Signup failed');
-      console.error(error);
-    });
+    axiosInstance
+      .post('http://192.168.8.6:8000/patientsignup/', {
+        fullName,
+        email,
+        phoneNumber,
+        relativePhoneNumber,
+        password,
+        dateOfBirth,
+        gender,
+      })
+      .then(response => {
+        // Handle successful signup
+        navigation.navigate('Login');
+        console.log('Signup successful');
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Handle signup error
+        console.error('Signup failed');
+        console.error(error);
+      });
   };
 
-  const handleGenderSelect = (selectedGender) => {
+  const handleGenderSelect = selectedGender => {
     setGender(selectedGender);
   };
 
-  const formatBirthDate = (input) => {
+  const formatBirthDate = input => {
     let formattedDate = input.replace(/[^0-9]/g, '');
     if (formattedDate.length > 8) {
       formattedDate = formattedDate.substr(0, 8);
     }
     if (formattedDate.length > 4) {
-      formattedDate = formattedDate.replace(/(\d{2})(\d{2})(\d{0,4})/, '$1/$2/$3');
+      formattedDate = formattedDate.replace(
+        /(\d{2})(\d{2})(\d{0,4})/,
+        '$1/$2/$3',
+      );
     } else if (formattedDate.length > 2) {
       formattedDate = formattedDate.replace(/(\d{2})(\d{0,2})/, '$1/$2');
     }
@@ -149,15 +160,21 @@ const SignupPage = ({navigation}) => {
         <Text style={styles.genderLabel}>Gender:</Text>
         <View style={styles.genderButtonContainer}>
           <TouchableOpacity
-            style={gender === 'male' ? [styles.genderButton, styles.selectedGenderButton] : styles.genderButton}
-            onPress={() => handleGenderSelect('male')}
-          >
+            style={
+              gender === 'male'
+                ? [styles.genderButton, styles.selectedGenderButton]
+                : styles.genderButton
+            }
+            onPress={() => handleGenderSelect('male')}>
             <Text style={styles.genderButtonText}>Male</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={gender === 'female' ? [styles.genderButton, styles.selectedGenderButton] : styles.genderButton}
-            onPress={() => handleGenderSelect('female')}
-          >
+            style={
+              gender === 'female'
+                ? [styles.genderButton, styles.selectedGenderButton]
+                : styles.genderButton
+            }
+            onPress={() => handleGenderSelect('female')}>
             <Text style={styles.genderButtonText}>Female</Text>
           </TouchableOpacity>
         </View>
@@ -166,7 +183,9 @@ const SignupPage = ({navigation}) => {
       <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Signup</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.loginButton}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Login')}
+        style={styles.loginButton}>
         <Text style={styles.link}>already have an account?</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -278,7 +297,7 @@ const styles = StyleSheet.create({
   error: {
     color: theme.errortextColor,
     fontSize: 16,
-  }
+  },
 });
 
 export default SignupPage;
