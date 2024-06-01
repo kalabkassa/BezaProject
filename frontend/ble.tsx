@@ -11,6 +11,7 @@ import {
   View,
   FlatList,
   Switch,
+  Switch,
 } from 'react-native';
 
 import {

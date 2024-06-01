@@ -75,7 +75,7 @@ def home(request):
     vitals = []
     for patient in patients:
         vitals.append(Vital.objects.filter(userID=patient))
-    print(patients)
+    # print(patients)
     
     return render(request,'edge/main.html', {'patients': patients, 'vitals': vitals})
 
@@ -207,7 +207,6 @@ def location(request):
         latitude = request.data['latitude']
         longitude = request.data['longitude']
         locationEnabled = request.data['locationEnabled']
-        print(latitude, longitude)
         LocationData.objects.create(userID=patient, latitude=latitude, longitude=longitude, locationEnabled = locationEnabled)
     return Response({'message': 'sent successfully'})
 
