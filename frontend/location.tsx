@@ -4,6 +4,7 @@ import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import Geolocation from 'react-native-geolocation-service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axiosInstance from './axiosInstance';
+import { api_ip } from './config';
 
 module.exports = async LocationComponent => {
   const [latitude, setLatitude] = useState(null);
@@ -80,7 +81,7 @@ module.exports = async LocationComponent => {
       }
       let data = latitude + ',' + longitude;
       const response = await axiosInstance.post(
-        'http://192.168.8.6:8000/location/',
+        `http://${api_ip}/location/`,
         {
           user: username,
           locationEnabled: locationDataEnabled,

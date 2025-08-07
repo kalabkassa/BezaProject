@@ -11,6 +11,7 @@ import axiosInstance from './axiosInstance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import messaging from '@react-native-firebase/messaging';
+import { api_ip } from './config';
 // import {Button, Title } from 'react-native-paper';
 
 const theme = {
@@ -32,7 +33,7 @@ const getToken = async () => {
 const sendTokenToDjango = async token => {
   try {
     const response = await axiosInstance.post(
-      'http://192.168.8.6:8000/register-device-token/',
+      `http://${api_ip}/register-device-token/`,
       {
         method: 'POST',
         headers: {
@@ -62,7 +63,7 @@ export default function LoginPage(props) {
     }
     try {
       const response = await axiosInstance.post(
-        'http://192.168.8.6:8000/patientlogin/',
+        `http://${api_ip}/patientlogin/`,
         {
           email: email,
           password: password,

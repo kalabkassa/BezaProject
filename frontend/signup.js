@@ -9,6 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import axiosInstance from './axiosInstance.js';
+import { api_ip } from './config.js';
 
 // Theme
 const theme = {
@@ -52,7 +53,7 @@ const SignupPage = ({navigation}) => {
 
     // Send signup data to the backend
     axiosInstance
-      .post('http://192.168.8.6:8000/patientsignup/', {
+      .post(`http://${api_ip}/patientsignup/`, {
         fullName,
         email,
         phoneNumber,

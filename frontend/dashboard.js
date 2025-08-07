@@ -4,6 +4,7 @@ import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Replace with the appropriate icon library
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axiosInstance from './axiosInstance';
+import { api_ip } from './config';
 
 const Dashboard = ({navigation}) => {
   const [showLogout, setShowLogout] = useState(false);
@@ -21,7 +22,7 @@ const Dashboard = ({navigation}) => {
       const sessionToken = await AsyncStorage.getItem('sessionId');
       console.log(sessionToken);
       // Make API request to Django logout endpoint to invalidate the session
-      await axiosInstance.post('http://192.168.8.6:8000/logout/');
+      await axiosInstance.post(`http://${api_ip}/logout/`);
 
       // Remove the session token from AsyncStorage
       await AsyncStorage.removeItem('sessionId');
@@ -56,7 +57,7 @@ const Dashboard = ({navigation}) => {
       <TouchableOpacity onPress={handleUsernamePress}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Icon name="user" size={20} color="black" style={{marginRight: 8}} />
-          <Text style={{fontSize: 20}}>
+          <Text style={{fontSize: 20, color: "black",}}>
             Welcome, <Text style={{fontWeight: 'bold'}}>{username}</Text>
           </Text>
         </View>
